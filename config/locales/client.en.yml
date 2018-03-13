@@ -1351,6 +1351,9 @@ en:
           desc: Whispers are only visible to staff members
         create_topic:
           label: "New Topic"
+        shared_draft: 
+          label: "Shared Draft"
+          desc: "Draft a topic that will only be visible to staff"
 
     notifications:
       tooltip:

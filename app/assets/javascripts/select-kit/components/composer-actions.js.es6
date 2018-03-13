@@ -110,13 +110,26 @@ export default DropdownSelectBoxComponent.extend({
     // Edge case: If personal messages are disabled, it is possible to have
     // no items which stil renders a button that pops up nothing. In this
     // case, add an option for what you're currently doing.
-    if (action === CREATE_TOPIC && items.length === 0) {
-      items.push({
-        name: I18n.t("composer.composer_actions.create_topic.label"),
-        description: I18n.t("composer.composer_actions.reply_as_new_topic.desc"),
-        icon: "mail-forward",
-        id: "create_topic"
-      });
+    if (action === CREATE_TOPIC) {
+
+      if (this.site.shared_drafts_enabled) {
+        // Shared Drafts Choice
+        items.push({
+          name: I18n.t("composer.composer_actions.shared_draft.label"),
+          description: I18n.t("composer.composer_actions.shared_draft.desc"),
+          icon: "pencil-alt",
+          id: "shared_draft"
+        });
+      }
+
+      if (items.length === 0) {
+        items.push({
+          name: I18n.t("composer.composer_actions.create_topic.label"),
+          description: I18n.t("composer.composer_actions.reply_as_new_topic.desc"),
+          icon: "mail-forward",
+          id: "create_topic"
+        });
+      }
     }
     return items;
   },
